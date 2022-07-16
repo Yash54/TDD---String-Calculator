@@ -36,6 +36,16 @@ public class testCaculator {
     	assertEquals(6, Calculator.add("1\n2,3"));
     	System.out.println("String with new line arugument : Success");
     }
+    
+    @Test
+    public void testOtherDelimiter(){
+    	assertEquals(3, Calculator.add("//:\n1:2"));
+    	System.out.println("String with ':' delimiter : Success");
+    	assertEquals(3, Calculator.add("//;\n1;2"));
+    	System.out.println("String with ';' delimiter : Success");
+    	assertEquals(3, Calculator.add("//`\n1`2"));
+    	System.out.println("String with '`' delimiter : Success");
+    }
 }
 
 
