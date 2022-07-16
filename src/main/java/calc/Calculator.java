@@ -25,11 +25,23 @@ public class Calculator {
 	}
 	
 	private static int sum(String[] numbers){
- 	    int total = 0;
+		int total = 0;
+ 	    String negString = "";
 
         for(String number : numbers){
-        	total += toInt(number);
+        	if(toInt(number) < 0){
+        		if(negString.equals(""))
+        			negString = number;
+        		else
+        			negString += ("," + number);
+        	}
+		    total += toInt(number);
 		}
+
+		if(!negString.equals("")){
+			throw new IllegalArgumentException("Negative values are not allowed: " + negString);
+		}
+
 		return total;
     }
 

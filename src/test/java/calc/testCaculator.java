@@ -46,6 +46,23 @@ public class testCaculator {
     	assertEquals(3, Calculator.add("//`\n1`2"));
     	System.out.println("String with '`' delimiter : Success");
     }
+    
+    @Test
+    public void testNegativeNumver(){
+    	try {
+			Calculator.add("-3,4");
+		}
+		catch (IllegalArgumentException e){
+			System.out.println("Negative values are not allowed: -3");
+		}
+
+		try {
+			Calculator.add("-10,4,5,-2");
+		}
+		catch (IllegalArgumentException e){
+			System.out.println("Negative values are not allowed: -10,-2");
+		}
+    }
 }
 
 
