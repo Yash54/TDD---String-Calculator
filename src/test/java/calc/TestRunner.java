@@ -9,7 +9,7 @@ public class TestRunner {
 	
 	// Testing method
 	public static void main(String[] args) {
-		Result result = JUnitCore.runClasses(testCaculator.class);
+		Result result = JUnitCore.runClasses(testCalculator.class);
 		
 		for (Failure failure : result.getFailures()) {
 	         System.out.println(failure.toString());

@@ -3,50 +3,47 @@ package main.java.calc;
 public class Calculator {
 	
 	// Function to add string arguments
-	public static int add(String text){
-		if(text.equals("")){
-			return 0;
-		}
-		
-		String delimiter = ",";
-		if(text.matches("//(.*)\n(.*)")){
-			delimiter = Character.toString(text.charAt(2));
-			text = text.substring(4);
-		}
-		String numberList[] = splitNum(text, delimiter + "|\n");
-		return sum(numberList);
-	}
-	
-	//Function to split numbers from string using given delimiter
-	private static String[] splitNum(String numbers, String divider){
-	    return numbers.split(divider);
-	}
-	
-	//Function to convert string to integer
-	private static int toInt(String number){
-		return Integer.parseInt(number);
-	}
-	
-	//Function to calculate sum of given numbers
-	private static int sum(String[] numbers){
-		int total = 0;
- 	    String negString = "";
+    public static int add(String text) {
+        if (text.isEmpty()) {
+            return 0;
+        }
 
-        for(String number : numbers){
-        	if(toInt(number) < 0){
-        		if(negString.equals(""))
-        			negString = number;
-        		else
-        			negString += ("," + number);
-        	}
-		    total += toInt(number);
-		}
-
-		if(!negString.equals("")){
-			throw new IllegalArgumentException("Negative values are not allowed: " + negString);
-		}
-
-		return total;
+        String delimiter = ",";
+        if (text.matches("//(.*)\n(.*)")) {
+            delimiter = Character.toString(text.charAt(2));
+            text = text.substring(4);
+        }
+        String[] numberList = text.split(delimiter + "|\n");
+        return sum(numberList);
     }
 
+    //Function to calculate sum of given numbers
+    private static int sum(String[] numbers) {
+        int total = 0;
+        try {
+            String negString = "";
+            for (String number : numbers) {
+                if (Integer.parseInt(number) < 0) {
+                    if (negString.isEmpty()) {
+                        negString = number;
+                    } else {
+                        negString += ("," + number);
+                    }
+                } else {
+                    total += Integer.parseInt(number);
+                }
+            }
+
+            if (!negString.isEmpty()) {
+                throw new IllegalArgumentException("Negative values are not allowed: " + negString);
+            }
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("Argument is not an Integer format");
+        } catch (IllegalArgumentException e) {
+            throw e;
+        } catch (Exception e) {
+            System.out.println("Unknown error occurred " + e.getMessage());
+        }
+        return total;
+    }
 }
