@@ -6,7 +6,8 @@ import org.junit.runner.notification.Failure;
 
 
 public class TestRunner {
-
+	
+	// Testing method
 	public static void main(String[] args) {
 		Result result = JUnitCore.runClasses(testCaculator.class);
 		

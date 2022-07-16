@@ -1,7 +1,8 @@
 package main.java.calc;
 
 public class Calculator {
-
+	
+	// Function to add string arguments
 	public static int add(String text){
 		if(text.equals("")){
 			return 0;
@@ -16,14 +17,17 @@ public class Calculator {
 		return sum(numberList);
 	}
 	
+	//Function to split numbers from string using given delimiter
 	private static String[] splitNum(String numbers, String divider){
 	    return numbers.split(divider);
 	}
 	
+	//Function to convert string to integer
 	private static int toInt(String number){
 		return Integer.parseInt(number);
 	}
 	
+	//Function to calculate sum of given numbers
 	private static int sum(String[] numbers){
 		int total = 0;
  	    String negString = "";
